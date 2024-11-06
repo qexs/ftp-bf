@@ -10,7 +10,7 @@ echo -e "${GREEN}Selam dostlar, Hydra tarzı FTP brute force aracıma hoş geldi
 
 # Kullanıcıdan bilgileri al
 read -p "Lütfen brute forc yapılacak IP adresini gir: " ip
-read -p "Hızı nasıl olsun? (fast/normal/ultra) >> " hız
+read -p "Hızı nasıl olsun? (fast/normal/ultra) >> " hiz
 read -p "Kelime dosyasının yolunu gir >> " word
 read -p "Kullanıcı adını gir >> " user
 
