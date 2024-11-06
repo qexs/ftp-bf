@@ -10,27 +10,27 @@ echo -e "${GREEN}Selam dostlar, FTP brute force aracıma hoş geldiniz!${NC}"
 
 # Kullanıcıdan bilgileri al
 read -p "Lütfen brute forc yapılacak IP adresini gir: " ip
-read -p "Hızı nasıl olsun? (fast/normal/ultra) >> " hız
+read -p "Hızı nasıl olsun? (fast/normal/ultra) >> " hiz
 read -p "Kelime dosyasının yolunu gir >> " word
 read -p "Kullanıcı adını gir >> " user
 
 # Hız seçimine göre gecikme ayarı
 case "$hız" in
     fast)
-        delay=0.5
-        echo -e "${YELLOW}Hız: Fast seçildi.${NC}"
+        delay=0.05  # 10 kat hızlandırıldı
+        echo -e "${YELLOW}Hız: Fast seçildi. 10 kat hızlandırıldı.${NC}"
         ;;
     normal)
-        delay=1
-        echo -e "${YELLOW}Hız: Normal seçildi.${NC}"
+        delay=0.1   # Normal hızda 10 kat hızlandırma
+        echo -e "${YELLOW}Hız: Normal seçildi. 10 kat hızlandırıldı.${NC}"
         ;;
     ultra)
-        delay=0.1
-        echo -e "${YELLOW}Hız: Ultra seçildi.${NC}"
+        delay=0.01  # Ultra hızda çok hızlı denemeler
+        echo -e "${YELLOW}Hız: Ultra seçildi. 10 kat hızlandırıldı.${NC}"
         ;;
     *)
         echo -e "${RED}Geçersiz hız seçimi! Varsayılan olarak normal hızda çalışacak.${NC}"
-        delay=1
+        delay=0.1
         ;;
 esac
 
